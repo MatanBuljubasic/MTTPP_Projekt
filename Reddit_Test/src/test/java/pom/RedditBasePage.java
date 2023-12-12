@@ -1,5 +1,6 @@
 package pom;
 
+import io.github.sukgu.Shadow;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,9 +12,9 @@ public class RedditBasePage {
         return driver.findElement(By.id("reddit-logo"));
     }
 
-    public static WebElement searchBar(WebDriver driver){
+    public static WebElement searchBar(Shadow shadow){
 
-        return driver.findElement(By.name("q"));
+        return shadow.findElement("input[name='q']");
     }
 
     public static WebElement loginButton(WebDriver driver){

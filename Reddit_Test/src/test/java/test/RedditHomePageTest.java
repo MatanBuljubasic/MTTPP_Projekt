@@ -16,7 +16,7 @@ public class RedditHomePageTest extends RedditBaseTest {
         delay.until(d -> redditLogo.isDisplayed());
         redditLogo.click();
         WebElement redditLogoAfter = RedditHomePage.logo(driver);
-        WebElement redditSearchBar = RedditHomePage.searchBar(driver);
+        WebElement redditSearchBar = RedditHomePage.searchBar(shadow);
         WebElement redditLoginButton = RedditHomePage.loginButton(driver);
         WebElement redditPosts = RedditHomePage.posts(driver);
         Assert.assertTrue(redditLogoAfter.isDisplayed());
