@@ -15,12 +15,12 @@ public class RedditSubredditPageTest extends RedditBaseTest {
         driver.manage().window().maximize();
         WebElement firstSubreddit = RedditHomePage.firstSubreddit(driver);
         delay.until(d -> firstSubreddit.isDisplayed());
-        firstSubredditTitle = firstSubreddit.getAttribute("href");
+        firstSubredditLink = firstSubreddit.getAttribute("href");
         firstSubreddit.click();
         Thread.sleep(2000);
         WebElement subredditTitle = RedditSubredditPage.subredditTitle(driver);
         WebElement aboutSidebar = RedditSubredditPage.aboutSidebar(driver);
-        Assert.assertEquals(firstSubredditTitle, RedditHomePage.URL + '/' + subredditTitle.getText());
+        Assert.assertEquals(firstSubredditLink, RedditHomePage.URL + '/' + subredditTitle.getText());
         Assert.assertTrue(aboutSidebar.isDisplayed());
     }
 
