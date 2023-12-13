@@ -14,7 +14,7 @@ import static org.apache.commons.lang3.StringUtils.containsIgnoreCase;
 public class RedditSearchResultsPageTest extends RedditBaseTest{
 
     @Test
-    public void singlePostPageTest() throws InterruptedException {
+    public void searchResultsPageTest() throws InterruptedException {
 
         driver.manage().window().maximize();
         WebElement searchBar = RedditHomePage.searchBar(shadow);
