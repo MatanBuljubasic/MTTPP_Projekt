@@ -19,7 +19,6 @@ public class RedditSearchResultsPageTest extends RedditBaseTest{
         driver.manage().window().maximize();
         WebElement searchBar = RedditHomePage.searchBar(shadow);
         delay.until(ExpectedConditions.elementToBeClickable(searchBar));
-        searchBar.click();
         searchBar.sendKeys("bitcoin");
         searchBar.sendKeys(Keys.ENTER);
         Thread.sleep(2000);

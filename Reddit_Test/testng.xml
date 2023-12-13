@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="AllTestsSuite">
-    <test name="Reddit Test">
+<suite name="AllTestsSuite" parallel="tests" thread-count="2">
+
+    <test name="Reddit Test Firefox">
+        <parameter name="browser" value="firefox"></parameter>
         <classes>
             <class name="test.RedditHomePageTest"/>
             <class name="test.RedditSinglePostPageTest"/>
+            <class name="test.RedditSearchResultsPageTest"/>
+            <class name="test.RedditSubredditPageTest"/>
+            <class name="test.RedditUserPageTest"/>
         </classes>
     </test>
+
+    <test name="Reddit Test Chrome">
+        <parameter name="browser" value="chrome"></parameter>
+        <classes>
+            <class name="test.RedditHomePageTest"/>
+            <class name="test.RedditSinglePostPageTest"/>
+            <class name="test.RedditSearchResultsPageTest"/>
+            <class name="test.RedditSubredditPageTest"/>
+            <class name="test.RedditUserPageTest"/>
+        </classes>
+    </test>
+
 </suite>

@@ -19,4 +19,9 @@ public class RedditHomePage extends RedditBasePage{
         return driver.findElement(By.xpath("/html/body/shreddit-app/div/div[1]/div[2]/main/shreddit-feed/article[1]/shreddit-post"));
     }
 
+    public static WebElement firstSubreddit(WebDriver driver){
+
+        return driver.findElement(By.xpath("/html/body/shreddit-app/div/div[1]/div[2]/section/section/div/div/li/ul/li[1]/a"));
+    }
+
 }

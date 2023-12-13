@@ -21,4 +21,9 @@ public class RedditSinglePostPage extends RedditBasePage{
         return driver.findElement(By.xpath("/html/body/shreddit-app/div/main/shreddit-post/div[1]/span[2]/shreddit-async-loader[2]"));
     }
 
+    public static WebElement postAuthor(WebDriver driver){
+
+        return driver.findElement(By.xpath("/html/body/shreddit-app/div/main/shreddit-post/div[1]/span[1]/div/div/span[1]/div/faceplate-hovercard/faceplate-tracker/a"));
+    }
+
 }
