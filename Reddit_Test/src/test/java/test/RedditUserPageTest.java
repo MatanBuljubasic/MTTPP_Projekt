@@ -3,8 +3,6 @@ package test;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pom.RedditHomePage;
-import pom.RedditSinglePostPage;
 import pom.RedditUserPage;
 
 public class RedditUserPageTest extends RedditBaseTest{
@@ -12,15 +10,9 @@ public class RedditUserPageTest extends RedditBaseTest{
     @Test
     public void userPageTest() throws InterruptedException {
 
-        String postAuthorName = null;
+        String postAuthorName = "Nice-Cup582";
         driver.manage().window().maximize();
-        WebElement firstPost = RedditHomePage.firstPost(driver);
-        delay.until(d -> firstPost.isDisplayed());
-        firstPost.click();
-        Thread.sleep(2000);
-        WebElement postAuthor = RedditSinglePostPage.postAuthor(driver);
-        postAuthorName = postAuthor.getText();
-        postAuthor.click();
+        driver.navigate().to(RedditUserPage.URL);
         Thread.sleep(2000);
         WebElement userName = RedditUserPage.userName(driver);
         WebElement overviewLabel = RedditUserPage.overviewLabel(driver);

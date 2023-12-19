@@ -1,5 +1,6 @@
 package test;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.sukgu.Shadow;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -20,11 +21,11 @@ public class RedditBaseTest {
     public void setupTest(String browser) {
 
         if(browser.equalsIgnoreCase("firefox")){
-            System.setProperty("webdriver.gecko.driver", "D:\\drivers\\geckodriver.exe");
+            WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver();
         }
         else if(browser.equalsIgnoreCase("chrome")){
-            System.setProperty("webdriver.chrome.driver", "D:\\drivers\\chromedriver.exe");
+            WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
         }
 

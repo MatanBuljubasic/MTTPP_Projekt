@@ -17,8 +17,8 @@ public class RedditSearchResultsPageTest extends RedditBaseTest{
     public void searchResultsPageTest() throws InterruptedException {
 
         driver.manage().window().maximize();
+        delay.until(ExpectedConditions.elementToBeClickable(RedditHomePage.searchBar(shadow)));
         WebElement searchBar = RedditHomePage.searchBar(shadow);
-        delay.until(ExpectedConditions.elementToBeClickable(searchBar));
         searchBar.sendKeys("bitcoin");
         searchBar.sendKeys(Keys.ENTER);
         Thread.sleep(2000);

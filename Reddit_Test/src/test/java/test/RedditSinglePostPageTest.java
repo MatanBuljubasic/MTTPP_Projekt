@@ -1,6 +1,7 @@
 package test;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pom.RedditHomePage;
@@ -13,8 +14,8 @@ public class RedditSinglePostPageTest extends RedditBaseTest {
     public void singlePostPageTest() throws InterruptedException {
 
         driver.manage().window().maximize();
+        delay.until(d -> ExpectedConditions.elementToBeClickable(RedditHomePage.firstPost(driver)));
         WebElement firstPost = RedditHomePage.firstPost(driver);
-        delay.until(d -> firstPost.isDisplayed());
         firstPost.click();
         Thread.sleep(2000);
         WebElement postOptions = RedditSinglePostPage.postOptions(driver);

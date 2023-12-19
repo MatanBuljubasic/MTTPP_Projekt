@@ -1,6 +1,7 @@
 package test;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pom.RedditHomePage;
@@ -11,10 +12,10 @@ public class RedditSubredditPageTest extends RedditBaseTest {
     @Test
     public void subredditPageTest() throws InterruptedException {
 
-        String firstSubredditTitle = null;
+        String firstSubredditLink = null;
         driver.manage().window().maximize();
+        delay.until(d -> ExpectedConditions.elementToBeClickable(RedditHomePage.firstSubreddit(driver)));
         WebElement firstSubreddit = RedditHomePage.firstSubreddit(driver);
-        delay.until(d -> firstSubreddit.isDisplayed());
         firstSubredditLink = firstSubreddit.getAttribute("href");
         firstSubreddit.click();
         Thread.sleep(2000);

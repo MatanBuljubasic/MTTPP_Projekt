@@ -1,6 +1,7 @@
 package test;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pom.RedditHomePage;
@@ -12,8 +13,8 @@ public class RedditHomePageTest extends RedditBaseTest {
     public void homePageTest() {
 
         driver.manage().window().maximize();
+        delay.until(ExpectedConditions.elementToBeClickable(RedditHomePage.logo(driver)));
         WebElement redditLogo = RedditHomePage.logo(driver);
-        delay.until(d -> redditLogo.isDisplayed());
         redditLogo.click();
         WebElement redditLogoAfter = RedditHomePage.logo(driver);
         WebElement redditSearchBar = RedditHomePage.searchBar(shadow);
