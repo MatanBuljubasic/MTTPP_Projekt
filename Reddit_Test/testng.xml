@@ -5,22 +5,14 @@
     <test name="Reddit Test Firefox">
         <parameter name="browser" value="firefox"></parameter>
         <classes>
-            <class name="test.RedditHomePageTest"/>
-            <class name="test.RedditSinglePostPageTest"/>
-            <class name="test.RedditSearchResultsPageTest"/>
-            <class name="test.RedditSubredditPageTest"/>
-            <class name="test.RedditUserPageTest"/>
+            <class name="test.RedditTest"/>
         </classes>
     </test>
 
     <test name="Reddit Test Chrome">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="test.RedditHomePageTest"/>
-            <class name="test.RedditSinglePostPageTest"/>
-            <class name="test.RedditSearchResultsPageTest"/>
-            <class name="test.RedditSubredditPageTest"/>
-            <class name="test.RedditUserPageTest"/>
+            <class name="test.RedditTest"/>
         </classes>
     </test>
 
