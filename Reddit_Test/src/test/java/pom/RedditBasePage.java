@@ -1,25 +1,32 @@
 package pom;
 
-import io.github.sukgu.Shadow;
-import org.openqa.selenium.By;
+import io.github.sukgu.support.ElementFieldDecorator;
+import io.github.sukgu.support.FindElementBy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 
 public class RedditBasePage {
 
-    public static WebElement logo(WebDriver driver){
+    public static String baseURL = "https://www.reddit.com";
+    WebDriver driver;
+    ElementFieldDecorator decorator;
 
-        return driver.findElement(By.id("reddit-logo"));
-    }
+    @FindBy(id = "reddit-logo")
+    WebElement Logo;
 
-    public static WebElement searchBar(Shadow shadow){
+    @FindBy(id = "login-button")
+    WebElement LoginButton;
 
-        return shadow.findElement("input[name='q']");
-    }
+    @FindElementBy(css = "input[name='q']")
+    WebElement SearchBar;
 
-    public static WebElement loginButton(WebDriver driver){
-
-        return driver.findElement(By.id("login-button"));
+    public RedditBasePage(WebDriver driver){
+        this.driver = driver;
+        decorator = new ElementFieldDecorator(new DefaultElementLocatorFactory(driver));
+        PageFactory.initElements(decorator, this);
     }
 
 }

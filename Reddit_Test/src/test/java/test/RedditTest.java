@@ -6,9 +6,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.*;
-import pom.RedditBasePageSkeletor;
-import pom.RedditHomePageSkeletor;
-import pom.RedditSinglePostPageSkeletor;
+import pom.*;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -17,9 +15,13 @@ import java.util.concurrent.TimeUnit;
 public class RedditTest {
 
     WebDriver driver;
-    RedditHomePageSkeletor redditHomePageSkeletor;
-    RedditSinglePostPageSkeletor redditSinglePostPageSkeletor;
+    RedditHomePage redditHomePage;
+    RedditSinglePostPage redditSinglePostPage;
+    RedditSearchResultsPage redditSearchResultsPage;
+    RedditSubredditPage redditSubredditPage;
+    RedditUserPage redditUserPage;
     Capabilities capabilities;
+    String firstSubredditLink;
 
     @BeforeTest
     @Parameters("browser")
@@ -37,26 +39,56 @@ public class RedditTest {
 
     @BeforeMethod
     public void redirectToHomePage(){
-        driver.navigate().to(RedditBasePageSkeletor.baseURL);
+        driver.navigate().to(RedditBasePage.baseURL);
     }
 
     @Test
     public void testHomePage(){
-        redditHomePageSkeletor = new RedditHomePageSkeletor(driver);
-        redditHomePageSkeletor.checkSearchBar();
-        redditHomePageSkeletor.checkLogo();
-        redditHomePageSkeletor.checkLoginButton();
-        redditHomePageSkeletor.checkPosts();
+        redditHomePage = new RedditHomePage(driver);
+        redditHomePage.checkSearchBar();
+        redditHomePage.checkLogo();
+        redditHomePage.checkLoginButton();
+        redditHomePage.checkPosts();
     }
 
     @Test
     public void testSinglePostPage(){
-        redditHomePageSkeletor = new RedditHomePageSkeletor(driver);
-        redditSinglePostPageSkeletor = new RedditSinglePostPageSkeletor(driver);
-        redditHomePageSkeletor.clickFirstPost();
-        redditSinglePostPageSkeletor.checkPostOptions();
-        redditSinglePostPageSkeletor.checkAllComments();
-        redditSinglePostPageSkeletor.checkCommentSortByText();
+        redditHomePage = new RedditHomePage(driver);
+        redditSinglePostPage = new RedditSinglePostPage(driver);
+        redditHomePage.clickFirstPost();
+        redditSinglePostPage.checkPostOptions();
+        redditSinglePostPage.checkAllComments();
+        redditSinglePostPage.checkCommentSortByText();
+    }
+
+    @Test
+    public void testSearchResultsPage(){
+        redditHomePage = new RedditHomePage(driver);
+        redditSearchResultsPage = new RedditSearchResultsPage(driver);
+        redditHomePage.inputSearchBar();
+        redditSearchResultsPage.checkFirstTitle();
+    }
+
+    @Test
+    public void testSubredditPage(){
+        redditHomePage = new RedditHomePage(driver);
+        redditSubredditPage = new RedditSubredditPage(driver);
+        firstSubredditLink = redditHomePage.getFirstSubredditLink();
+        redditHomePage.clickFirstSubreddit();
+        redditSubredditPage.checkSubredditTitle(firstSubredditLink);
+        redditSubredditPage.checkAboutSidebar();
+    }
+
+    @Test
+    public void testUserPage(){
+        String postAuthorName = "Nice-Cup582";
+        redditUserPage = new RedditUserPage(driver);
+        driver.navigate().to(RedditUserPage.URL);
+        redditUserPage.checkUserName(postAuthorName);
+        redditUserPage.checkCommentsLabel();
+        redditUserPage.checkOverViewLabel();
+        redditUserPage.checkPostsLabel();
+        redditUserPage.checkPostKarmaLabel();
     }
 
     @AfterTest

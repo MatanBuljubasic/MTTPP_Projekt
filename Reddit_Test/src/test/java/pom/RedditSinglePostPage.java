@@ -1,25 +1,35 @@
 package pom;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
-public class RedditSinglePostPage extends RedditBasePage{
+public class RedditSinglePostPage extends RedditBasePage {
 
-    public static WebElement allComments(WebDriver driver){
+    @FindBy(id = "comment-tree")
+    WebElement AllComments;
+    @FindBy(xpath = "/html/body/shreddit-app/div/main/shreddit-async-loader[2]/comment-body-header/shreddit-async-loader/div/span")
+    WebElement CommentSortByText;
+    @FindBy(xpath = "/html/body/shreddit-app/div/main/shreddit-post/div[1]/span[2]/shreddit-async-loader[2]")
+    WebElement PostOptions;
 
-        return driver.findElement(By.id("comment-tree"));
+    public RedditSinglePostPage(WebDriver driver){
+        super(driver);
+        PageFactory.initElements(decorator, this);
     }
 
-    public static WebElement commentSortByText(WebDriver driver){
-
-        return driver.findElement(By.xpath("/html/body/shreddit-app/div/main/shreddit-async-loader[2]/comment-body-header/shreddit-async-loader/div/span"));
+    public void checkAllComments(){
+        Assert.assertTrue(AllComments.isDisplayed());
     }
 
-    public static WebElement postOptions(WebDriver driver){
-
-        return driver.findElement(By.xpath("/html/body/shreddit-app/div/main/shreddit-post/div[1]/span[2]/shreddit-async-loader[2]"));
+    public void checkCommentSortByText(){
+        Assert.assertTrue(CommentSortByText.isDisplayed());
     }
 
+    public void checkPostOptions(){
+        Assert.assertTrue(PostOptions.isDisplayed());
+    }
 
 }

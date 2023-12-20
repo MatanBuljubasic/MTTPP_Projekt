@@ -1,18 +1,29 @@
 package pom;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
-public class RedditSubredditPage extends RedditBasePage{
+public class RedditSubredditPage extends RedditBasePage {
 
-    public static WebElement subredditTitle(WebDriver driver){
+    @FindBy(xpath = "/html/body/shreddit-app/div/div[1]/div[1]/div[2]/div/div[1]/div[2]/div[1]")
+    WebElement SubredditTitle;
 
-        return driver.findElement(By.xpath("/html/body/shreddit-app/div/div[1]/div[1]/div[2]/div/div[1]/div[2]/div[1]"));
+    @FindBy(id = "right-sidebar-container")
+    WebElement AboutSidebar;
+
+    public RedditSubredditPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(decorator, this);
     }
 
-    public static WebElement aboutSidebar(WebDriver driver){
+    public void checkSubredditTitle(String firstSubredditLink){
+        Assert.assertEquals(firstSubredditLink, RedditBasePage.baseURL + '/' + SubredditTitle.getText());
+    }
 
-        return driver.findElement(By.id("right-sidebar-container"));
+    public void checkAboutSidebar(){
+        Assert.assertTrue(AboutSidebar.isDisplayed());
     }
 }
