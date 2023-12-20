@@ -35,7 +35,7 @@ Test provjerava nalazimo li se na stranici autora čije smo korisničko ime zada
 ## Opis korištenih metoda i tehnologija
 
 ### Selenium WebDriver
-Svaki *HTML* element nad kojim se trebala vršiti radnja ili provjera se dohvaćao pomoću *XPatha*, *ID-a* ili imena, te se spremao kao instanca *WebElement* klase *Selenium WebDrivera*. Pomoću instance su se mogle simulirati radnje nad tim elementom kao što su klikanje i unošenje znakova. *Selenium WebDriver* je također pružao *drivere* potrebne za pojedini pretraživač. Uz to, koristile su se i *Wait* naredbe *Selenium WebDrivera*, točnije eksplicitne *Wait* naredbe koje čekaju određeno vrijeme da se traženi element pojavi na zaslonu, inače daje grešku.
+Svaki *HTML* element nad kojim se trebala vršiti radnja ili provjera se dohvaćao pomoću *XPatha*, *ID-a* ili imena, te se spremao kao instanca *WebElement* klase *Selenium WebDrivera*. Pomoću instance su se mogle simulirati radnje nad tim elementom kao što su klikanje i unošenje znakova. *Selenium WebDriver* je također pružao *drivere* potrebne za pojedini pretraživač. Uz to, koristile su se i *Wait* naredbe *Selenium WebDrivera*, točnije implicitne *Wait* naredbe koje čekaju određeno vrijeme da se traženi element pojavi na zaslonu, inače daje grešku.
 
 ### Page Object Model/Page Factory
 *POM* (Page Object Model) je oblikovni obrazac za *Selenium WebDriver* koji svaku stranicu stavlja u zasebnu klasu. U ovom projektu se izdvojila bazna klasa *RedditBasePage* koja sadrži sve elemente koji su konstantni na svim stranicama *Reddita*. Nadalje, klasa za svaku stranicu proširuje navedenu baznu klasu s dodatnim elementima. U svakoj klasi se također nalaze i metode koje vrše radnje potrebne za testiranje nad elementima.
@@ -43,8 +43,8 @@ Svaki *HTML* element nad kojim se trebala vršiti radnja ili provjera se dohvać
 ### .gitignore
 .gitignore datoteka je postavljena na način da ignorira sve dinamički generirane datoteke koje se stvore prilikom pokretanja testova.
 
-### Cross Browser testing
-Iz klasa za pojedine testove se također izvuklo zajedničko i stavilo se u baznu klasu *RedditBaseTest*. U navedenoj klasu se nalazi *BeforeClass* anotacija koja prije pokretanja svakog testa na temelju zadanog parametra odluči test pokrenuti ili u *Google Chromeu* ili u *Mozilla Firefoxu*.
+### Cross Browser testing i Selenium Grid
+U klasi *RedditTest* se nalazi *BeforeClass* anotacija koja prije pokretanja svakog testa na temelju zadanog parametra odluči test pokrenuti ili u *Google Chromeu* ili u *Mozilla Firefoxu*.
 
 ### Reporting
 Pomoću *TestNG-a* se nakon izvršenog testa stvara izvješće o provedenim testovima koje se nalazi u datoteci projekta.
